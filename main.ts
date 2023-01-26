@@ -1,5 +1,15 @@
 // Don't forget to comment your code as you work!
-let mySprite = sprites.create(img`
+function run () {
+    if (true) {
+        controller.moveSprite(mySprite)
+    }
+}
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    jump = 15
+})
+let mySprite: Sprite = null
+let jump: number
+mySprite = sprites.create(img`
     . . . . . . . . . . . . 
     . . . f f f f f f . . . 
     . f f f e e e e e f . . 
