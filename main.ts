@@ -149,7 +149,9 @@ mySprite = sprites.create(img`
     . f f f f f f f f f f . 
     . . f f . . . f f f . . 
     `, SpriteKind.Player)
-controller.moveSprite(mySprite)
+mySprite.setStayInScreen(true)
+mySprite.setPosition(6, 54)
+controller.moveSprite(mySprite, 0, 100)
 animation.runImageAnimation(
 mySprite,
 [img`
