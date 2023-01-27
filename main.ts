@@ -7,6 +7,11 @@ function run () {
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     jump = 15
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    game.over(false)
+})
+let projectile: Sprite = null
 let mySprite: Sprite = null
 let jump:number
 scene.setBackgroundImage(img`
@@ -150,6 +155,7 @@ mySprite = sprites.create(img`
     . . f f . . . f f f . . 
     `, SpriteKind.Player)
 mySprite.setStayInScreen(true)
+info.setLife(3)
 mySprite.setPosition(6, 54)
 controller.moveSprite(mySprite, 0, 100)
 animation.runImageAnimation(
@@ -209,3 +215,16 @@ mySprite,
 500,
 true
 )
+game.onUpdateInterval(500, function () {
+    projectile = sprites.createProjectileFromSide(img`
+        . . c c c c . . 
+        . c b d d d c . 
+        c b d d d d d c 
+        c b b d d d d c 
+        c b d b d d b c 
+        c c b d b b b c 
+        c c c b d d b c 
+        c c b b c c c c 
+        `, -50, 0)
+    projectile.setPosition(0, randint(0, 120))
+})
